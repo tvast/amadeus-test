@@ -1,13 +1,30 @@
 <template>
   <div class="hello">
-    <form action="http://localhost:3000/example" method="POST">
-  First name: <input type="text" name="origin"><br>
-  Last name: <input type="text" name="destination"><br>
- <button type="submit">Send to backend</button>
-</form>
-   <div v-for="item in info" :key="item.departureDate">
+<div class="container">
+<div class="">
+   <!-- <div v-for="item in info" :key="item.departureDate">
      {{item.origin}}--{{item.destination}}--{{item.price.total}}
+   </div> -->
+   <div >
+      <div class="row">
+    <div v-for="item in info2" :key="item.departureDate" class="col s4 autoflow">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">{{item.destination}}</span>
+          <p>{{item.price.total}}--{{item.departureDate}}--{{item.returnDate}}</p>
+        </div>
+        <div class="card-action">
+          <a :href="item.links.flightOffers">check offer</a>
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
    </div>
+   </div>
+ </div>
   </div>
 </template>
 
@@ -18,7 +35,9 @@ export default {
     msg: String
   },data: () => ({
   info:{},
+  info2:{},
   localhost: "http://localhost:3000",
+  localhost2: "http://localhost:3000/flight",
   //localhost2: "http://peslmwefulb01.es.corp.leroymerlin.com:8080/Ctrl_Gestion/",
   //dev : "http://10.24.67.66:3000",
  // Download : "Descargar",
@@ -36,12 +55,6 @@ filters : {
 
   }
 },created() {
-
-
-  
- 
-// const call = new Promise( (resolve, reject) => {
-// this.$loading(true)
 var vm=this;
 fetch(vm.localhost).then(function(response) {
   if (response.status !== 200) {
@@ -53,17 +66,21 @@ fetch(vm.localhost).then(function(response) {
 response.json().then((response) => {
   window. console.log(response)
   vm.info=response
-// });
 })
-
-// asyncLoading(call).then(this.$loading(false)).catch(function(err) {
-//     window.console.log('Fetch Error :-S', err, reject);
-//   });
-
-// return resolve
-
 }
-)
+);fetch(vm.localhost2).then(function(response) {
+  if (response.status !== 200) {
+    window.console.log('Looks like there was a problem. Status Code: ' +
+      response.status);
+    return;
+  }
+// Examine the text in the response
+response.json().then((response) => {
+  window. console.log(response)
+  vm.info2=response
+})
+}
+);
   
 },
 
@@ -75,18 +92,11 @@ methods: {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.displayFlex {
+  display :flex;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+.autoflow {
+  grid-auto-flow: column;
 }
 </style>

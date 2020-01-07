@@ -225,7 +225,6 @@ methods: {
   autocompleteCity(){},
 
   letsFly() {
-  window.console.log(this.selectedDateArrival + "--"+this.selectedDateDeparture)
   let bodyDate = "departure="+this.selectedDateDeparture + "&"+"arrival="+this.selectedDateArrival
   let headers= {
       // 'Content-Type': 'application/json'   
@@ -250,8 +249,10 @@ response.json().then((response) => {
 })
 }
 );
-
-const uriAuth ="http://localhost:3000/flight" 
+  
+  // Do something with the returned data.
+});
+  const uriAuth ="http://localhost:3000/flightSearch" 
 
 fetch(uriAuth)
   .then((res) => {
@@ -259,17 +260,9 @@ fetch(uriAuth)
 })
 .then((json) => {
   window.console.log(json);
-
   this.info2=json;
 
 })
-
-
-
-
-  
-  // Do something with the returned data.
-});
 }
 }
 

@@ -9,6 +9,9 @@ import 'vue-material/dist/theme/default-dark.css'
 
 Vue.use(VueMaterial)
 
+import VueMoJS from 'vue-mo-js'
+Vue.use(VueMoJS)
+
 Vue.config.productionTip = false
 
 new Vue({

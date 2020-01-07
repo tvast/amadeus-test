@@ -1,52 +1,30 @@
 
-  <div class="page-container">
-    <md-app md-waterfall md-mode="overlap">
-      <md-app-toolbar class="md-primary md-large">
-        <div class="md-toolbar-row">
-          <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-            <md-icon>menu</md-icon>
-          </md-button>
+  <div>
 
-          <span class="md-title"><img width="50%" src="https://developers.amadeus.com/PAS-EAS/api/v1/cms-gateway/sites/default/files/2019-09/logo-portal.png"></span>
-        </div>
-      </md-app-toolbar>
+  	      	<a href="https://www.example.co.uk">
+  <div id="btn1" class="button">
+    <h1>HOME</h1>
+  </div>
+</a>
 
-      <md-app-drawer :md-active.sync="menuVisible">
-        <md-toolbar class="md-transparent" md-elevation="0">
-          Navigation
-        </md-toolbar>
+<a href="https://www.example.co.uk">
+  <div id="btn2" class="button">
+    <h1>TUTORIALS</h1>
+  </div>
+</a>
 
-        <md-list>
-          <md-list-item>
-            <md-icon>move_to_inbox</md-icon>
-            <span class="md-list-item-text">Inbox</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>send</md-icon>
-            <span class="md-list-item-text">Sent Mail</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>delete</md-icon>
-            <span class="md-list-item-text">Trash</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>error</md-icon>
-            <span class="md-list-item-text">Spam</span>
-          </md-list-item>
-        </md-list>
-      </md-app-drawer>
-
-      <md-app-content>
+<a href="https://www.example.co.uk">
+  <div id="btn3" class="button">
+    <h1>ABOUT</h1>
+  </div>
+</a>
         
 <!-- https://codepen.io/sarahspr/pen/jQVeZr -->
     <!-- form -->
     <main class ="content">
     <form class="form">
     <div class ="title">
-      <h1>Book a Flight</h1>
+      <h2>Book a Flight</h2>
         <p>Select locations and dates to get started.</p>
     </div>
     <div class="progress">
@@ -58,44 +36,44 @@
      </div>
     </div>
     <div class ="categories">
-      <button class="flights button">Flights</button>
-      <button class="Hotels button">Hotels</button>
-      <button class ="Packages button">Packages</button>
+      <!-- <button class="flights button">Flights</button> -->
+      <!-- <button class="Hotels button">Hotels</button>
+      <button class ="Packages button">Packages</button> -->
     </div>
    <div class="row1">
     <div class="locations from-location1">
      <md-autocomplete @input="autocompleteCity" v-model="selectedCountry" :md-options="countries">
-      <label>Country</label>
+      <label>Departure</label>
     </md-autocomplete>
     </div>
     <div class="locations to-location1">
       <md-autocomplete @input="autocompleteCity" v-model="selectedCountry" :md-options="countries">
-      <label>Country</label>
+      <label>Arrival</label>
     </md-autocomplete>
     </div>
   </div>
     <div class="row2">
       <div class="dates depart">
-        <label class="depart-date" for="depart">Depart:</label>
-        <input class="departure-date" type="date"/>
+        <label class="depart-date" for="depart">Departure:</label>
+        <md-datepicker v-model="selectedDateDeparture" />
       </div>
       <div class="dates return">
         <label class="returning-date" for="return">Return:</label>
-        <input class="return-date" type="date"/>    
+        <md-datepicker v-model="selectedDateArrival" />   
       </div>
     </div>
-    <div class="next-button">
-    <button class="next" value="submit">Let's Fly!</button>
+    <div class="">
+    <p v-mojs="mojsOptions" class="next" @click="letsFly()" >Let's Fly!</p>
       </div>
     </form>
   </main>
-       <div >{{token}}
+       <div >
       <div class="row">
-    <div v-for="item in info2" :key="item.id" class="col s4 autoflow">
+    <div v-for="(item,index) in info2" :key="index" class="col s4 autoflow">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <template>
-          	<span  v-for="foo in item.itineraries" :key="foo.duration" class="card-title"> 
+          	<span  v-for="(foo, index) in item.itineraries" :key="index" class="card-title"> 
 
           		<span v-for="bar in foo.segments">
           			{{bar.departure.iataCode}}--{{bar.arrival.iataCode}}
@@ -113,8 +91,6 @@
     </div>
   </div>
 
-
-   </div>
-      </md-app-content>
-    </md-app>
+</div>
+   
   </div>

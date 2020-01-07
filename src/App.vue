@@ -1,8 +1,5 @@
-<template>
-  <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template src="./home.html">
+  
 </template>
 
 <script>
@@ -10,6 +7,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
+  menuVisible: false,
   components: {
     HelloWorld
   }
@@ -17,5 +15,58 @@ export default {
 </script>
 
 <style>
+h1 {
+  font-family: verdana, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+
+  transform: translate(10%, -100%);
+}
+
+a {
+  text-decoration: none;
+}
+
+#btn1 {
+  top: 100px;
+}
+
+#btn2 {
+  top: 200px;
+}
+
+#btn3 {
+  top: 300px;
+}
+
+div.button {
+  background-color: #ffffff;
+  color: #2c3e50;
+  border: none;
+  border-radius: 30px;
+  width: 500px;
+  height: 60px;
+  position: fixed;
+  left: -435px;
+  transition: .7s ease;
+
+}
+
+div.button:hover {
+  background-color: #ffffff;
+  position: fixed;
+  left: -50px;
+  width: 600px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 0px #c0392b;
+}
+
+div.button:active {
+  background-color: #2c3e50;
+  transition: 0s;
+  color: #ecf0f1;
+}
+
 
 </style>

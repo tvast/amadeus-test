@@ -1,0 +1,53 @@
+<div id="app"><div class="page-container">
+    <md-app md-waterfall md-mode="overlap">
+      <md-app-toolbar class="md-primary md-large">
+        <div class="md-toolbar-row">
+          <md-button v-mojs="mojsOptions" class="md-icon-button" @click="menuVisible = !menuVisible">
+            <md-icon>menu</md-icon>
+          </md-button>
+
+          
+       <span class="md-title">Amadeus<md-tooltip md-direction="right">“{{token}}</md-tooltip></span>
+    
+
+          
+        </div>
+      </md-app-toolbar>
+
+      <md-app-drawer :md-active.sync="menuVisible">
+        <md-toolbar class="md-transparent" md-elevation="0">
+          Navigation
+        </md-toolbar>
+
+        <md-list>
+          <md-list-item v-mojs="mojsOptions">
+            <md-icon>move_to_inbox</md-icon>
+            <span class="md-list-item-text">Inbox</span>
+          </md-list-item>
+
+          <md-list-item v-mojs="mojsOptions">
+            <md-icon>send</md-icon>
+            <span class="md-list-item-text">Sent Mail</span>
+          </md-list-item>
+
+          <md-list-item v-mojs="mojsOptions">
+            <md-icon>delete</md-icon>
+            <span class="md-list-item-text">Trash</span>
+          </md-list-item>
+
+          <md-list-item v-mojs="mojsOptions">
+            <md-icon>error</md-icon>
+            <span class="md-list-item-text">Spam</span>
+          </md-list-item>
+        </md-list>
+      </md-app-drawer>
+
+      <md-app-content>
+
+
+    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->	
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+</md-app-content>
+    </md-app>
+</div>
+</div>

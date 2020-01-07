@@ -155,10 +155,11 @@ button:hover {
 
 .next {
   display: block;
+  width: 10%;
   margin: 20px auto 20px;
   padding: 10px 20px;
   font-size: 14px;
-  background-color: #FF33CE;
+  background-color: #448aff;
   color: white;
   border: none;
   border-radius: 16px; 
@@ -170,10 +171,15 @@ button:hover {
 </style>
 
 <script>
+
+import Form from "./Form.vue"
 export default {
-  name: 'Overlap',
+  name: 'Home',
   data: () => ({
     menuVisible: false,
+    components:{
+      Form
+    },
     selectedCountry: null,
     countries: [
         'Algeria',
@@ -188,12 +194,54 @@ export default {
       localhost: "https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT,CITY&keyword=",
       info:{},
   info2:{},
+  info3:{},
   token:"",
   localhost3: "http://localhost:3000/token",
   localhost2: "http://localhost:3000/flight",
+  selectedDateDeparture :"2020-02-01",
+  selectedDateArrival : "2020-02-27",
+  mojsOptions : {
+            count : 6,
+            radius: { 15: 100 },
+            origin: '100% 100%',
+            degree: 360,
+            children: {
+              shape: 'polygon',
+              fill: ['blue','white'],
+              isSwirl:true,
+              swirlSize: 10,
+              swirlFrequency: 2,
+              delay: 'stagger(0, 30)'
+            }
+          }
   }),
 created() {
-var vm=this;
+
+  
+}, 
+
+methods: {
+
+  autocompleteCity(){},
+
+  letsFly() {
+  window.console.log(this.selectedDateArrival + "--"+this.selectedDateDeparture)
+  let bodyDate = "departure="+this.selectedDateDeparture + "&"+"arrival="+this.selectedDateArrival
+  let headers= {
+      // 'Content-Type': 'application/json'   
+      'Content-Type': 'application/x-www-form-urlencoded',
+     };
+  let uriDate ="http://localhost:3000/date?" +bodyDate
+  // let bodyDate2 = {
+  //   departure: this.selectedDateDeparture,
+  //   arrival:this.selectedDateArrival
+  // }
+  fetch(uriDate, { method: 'POST', 
+   headers: headers, 
+  body: bodyDate
+})
+  .then(() => {
+     var vm=this;
 fetch(vm.localhost3).then(function(response) {
 // Examine the text in the response
 response.json().then((response) => {
@@ -203,26 +251,7 @@ response.json().then((response) => {
 }
 );
 
-
-//get flight inspirations search
-
 const uriAuth ="http://localhost:3000/flight" 
-
-
-// //get grant
-// let headers= {
-//       // 'Content-Type': 'application/json'   
-//       'Content-Type': 'application/x-www-form-urlencoded',
-//      };
-
-// let body = {
-//    "grant_type": "client_credentials",
-//    "client_id": "qztkbf5XWjNSGkXRF9bfAwNg6bELWvVD",
-//   "client_secret": "w9mJ7ZJzlEGNffut",
-  
-// }
-
-// let token="";
 
 fetch(uriAuth)
   .then((res) => {
@@ -233,19 +262,19 @@ fetch(uriAuth)
 
   this.info2=json;
 
-// window.console.log(token);
+})
+
+
+
 
   
   // Do something with the returned data.
 });
-  
-},  
+}
+}
 
-methods: {
+        
 
-  autocompleteCity(){}
-
-        }
 }
 </script>
   

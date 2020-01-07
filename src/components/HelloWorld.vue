@@ -1,116 +1,4 @@
-  <template>
-  <div class="page-container">
-    <md-app md-waterfall md-mode="overlap">
-      <md-app-toolbar class="md-primary md-large">
-        <div class="md-toolbar-row">
-          <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-            <md-icon>menu</md-icon>
-          </md-button>
-
-          <span class="md-title"><img width="50%" src="https://developers.amadeus.com/PAS-EAS/api/v1/cms-gateway/sites/default/files/2019-09/logo-portal.png"></span>
-        </div>
-      </md-app-toolbar>
-
-      <md-app-drawer :md-active.sync="menuVisible">
-        <md-toolbar class="md-transparent" md-elevation="0">
-          Navigation
-        </md-toolbar>
-
-        <md-list>
-          <md-list-item>
-            <md-icon>move_to_inbox</md-icon>
-            <span class="md-list-item-text">Inbox</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>send</md-icon>
-            <span class="md-list-item-text">Sent Mail</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>delete</md-icon>
-            <span class="md-list-item-text">Trash</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>error</md-icon>
-            <span class="md-list-item-text">Spam</span>
-          </md-list-item>
-        </md-list>
-      </md-app-drawer>
-
-      <md-app-content>
-        
-<!-- https://codepen.io/sarahspr/pen/jQVeZr -->
-    <!-- form -->
-    <main class ="content">
-    <form class="form">
-    <div class ="title">
-      <h1>Book a Flight</h1>
-        <p>Select locations and dates to get started.</p>
-    </div>
-    <div class="progress">
-      <p>Step 1 of 3</p>
-    <div class="progress-bar">
-      <div class="bar-pink">
-        <p>33%</p>
-      </div>
-     </div>
-    </div>
-    <div class ="categories">
-      <button class="flights button">Flights</button>
-      <button class="Hotels button">Hotels</button>
-      <button class ="Packages button">Packages</button>
-    </div>
-   <div class="row1">
-    <div class="locations from-location1">
-     <md-autocomplete @input="autocompleteCity" v-model="selectedCountry" :md-options="countries">
-      <label>Country</label>
-    </md-autocomplete>
-    </div>
-    <div class="locations to-location1">
-      <md-autocomplete @input="autocompleteCity" v-model="selectedCountry" :md-options="countries">
-      <label>Country</label>
-    </md-autocomplete>
-    </div>
-  </div>
-    <div class="row2">
-      <div class="dates depart">
-        <label class="depart-date" for="depart">Depart:</label>
-        <input class="departure-date" type="date"/>
-      </div>
-      <div class="dates return">
-        <label class="returning-date" for="return">Return:</label>
-        <input class="return-date" type="date"/>    
-      </div>
-    </div>
-    <div class="next-button">
-    <button class="next" value="submit">Let's Fly!</button>
-      </div>
-    </form>
-  </main>
-       <div >{{token}}
-      <div class="row">
-    <div v-for="item in info2" :key="item.links.flightOffers" class="col s4 autoflow">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title"> {{item.destination}}</span>
-          <p>{{item.destination}}--{{item.price.total}}</p>
-        </div>
-        <div class="card-action">
-          <a :href="item.links.flightDates">check offer</a>
-          <a :href="item.links.flightOffers">This is a link</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-   </div>
-      </md-app-content>
-    </md-app>
-  </div>
-</template>
+<template src="./template.html"></template>
 
 
 <style  scoped>
@@ -343,7 +231,7 @@ fetch(uriAuth)
 .then((json) => {
   window.console.log(json);
 
-  this.info2=json.data;
+  this.info2=json;
 
 // window.console.log(token);
 
@@ -354,6 +242,8 @@ fetch(uriAuth)
 },  
 
 methods: {
+
+  autocompleteCity(){}
 
         }
 }

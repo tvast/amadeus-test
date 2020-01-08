@@ -180,17 +180,20 @@ export default {
     components:{
       Form
     },
-    selectedCountry: null,
-    countries: [
-        'Algeria',
-        'Argentina',
-        'Brazil',
-        'Canada',
-        'Italy',
-        'Japan',
-        'United Kingdom',
-        'United States'
-      ],
+    selectedCountryDeparture: null,
+    countriesDeparture: [
+        'MAD',
+        'PAR',
+        'SYD',
+        'BKK',
+       ],
+       selectedCountryArrival: null,
+    countriesArrival: [
+        'MAD',
+        'PAR',
+        'SYD',
+        'BKK',
+       ],
       localhost: "https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT,CITY&keyword=",
       info:{},
   info2:{},
@@ -222,11 +225,14 @@ created() {
 
 methods: {
 
-  autocompleteCity(){},
+  autocompleteCity(){
+    window.console.log(this.selectedCountryDeparture+" "+this.selectedCountryArrival)
+  },
 
   letsFly() {
     this.info2="";
-  let bodyDate = "departure="+this.selectedDateDeparture + "&"+"arrival="+this.selectedDateArrival
+  let bodyDate = "departure="+this.selectedDateDeparture + "&"+"arrival="+this.selectedDateArrival+"&locationDeparture="+this.selectedCountryDeparture+"&locationArrival="+this.selectedCountryArrival;
+   window.console.log(bodyDate)
   let headers= {
       // 'Content-Type': 'application/json'   
       'Content-Type': 'application/x-www-form-urlencoded',

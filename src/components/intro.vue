@@ -9,23 +9,7 @@
 		
 
 
-		<a href="">
-			<div id="btn1" class="button">
-				<router-link to="/foo"><h1>FLight search</h1></router-link>
-			</div>
-		</a>
-
-		<a href="">
-			<div id="btn2" class="button">
-				<router-link to="/foo"><h1>Flight price</h1></router-link>
-			</div>
-		</a>
-
-		<a href="">
-			<div id="btn3" class="button">
-				<router-link to="/foo"><h1>create orders</h1></router-link>
-			</div>
-		</a>
+	
 
 		<!-- <section id="intro">
 
@@ -94,15 +78,15 @@ a {
 }
 
 #btn1 {
-  top: 30%;
+  top: 300px;
 }
 
 #btn2 {
-  top: 50%;
+  top: 400px;
 }
 
 #btn3 {
-  top: 70%;
+  top: 500px;
 }
 
 div.button {
@@ -111,7 +95,7 @@ div.button {
   border: none;
   border-radius: 30px;
   width: 500px;
-  height: 15%;
+  height:100px;
   position: fixed;
   left: -435px;
   transition: .7s ease;
@@ -119,12 +103,12 @@ div.button {
 }
 
 div.button:hover {
-  background-color: #D52CAC;
+  background-color: black;
   position: fixed;
   left: -50px;
   width: 600px;
   border-radius: 15px;
-  box-shadow: 0px 5px 0px #c0392b;
+  box-shadow: 0px 5px 0px grey;
 }
 
 div.button:active {

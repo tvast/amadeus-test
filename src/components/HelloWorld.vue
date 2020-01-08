@@ -225,6 +225,7 @@ methods: {
   autocompleteCity(){},
 
   letsFly() {
+    this.info2="";
   let bodyDate = "departure="+this.selectedDateDeparture + "&"+"arrival="+this.selectedDateArrival
   let headers= {
       // 'Content-Type': 'application/json'   

@@ -171,15 +171,17 @@ button:hover {
 </style>
 
 <script>
-
-import Form from "./Form.vue"
+import { VueContentLoading,VclFacebook, VclInstagram } from 'vue-content-loading';
+// import Form from "./Form.vue"
 export default {
   name: 'Home',
   data: () => ({
     menuVisible: false,
-    components:{
-      Form
-    },
+    components: {
+        VclFacebook,
+        VclInstagram,
+        VueContentLoading,
+      },
     selectedCountryDeparture: null,
     countriesDeparture: [
         'MAD',

@@ -60,10 +60,7 @@ export default {
 </script>
 
 <style>
-#intro {
-	text-align:center;
-	font-size:20em
-}
+
 
 h1 {
   font-weight: bold;
@@ -78,15 +75,15 @@ a {
 }
 
 #btn1 {
-  top: 300px;
+  top: 200px;
 }
 
 #btn2 {
-  top: 400px;
+  top: 500px;
 }
 
 #btn3 {
-  top: 500px;
+  top: 800px;
 }
 
 div.button {
@@ -95,10 +92,11 @@ div.button {
   border: none;
   border-radius: 30px;
   width: 500px;
-  height:100px;
+  height:200px;
   position: fixed;
   left: -435px;
   transition: .7s ease;
+  margin :1%;
 
 }
 

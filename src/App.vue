@@ -1,20 +1,20 @@
-<template src="./home.html">
+<template src="./appHome.html">
   
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import searchTravel from './components/searchTravel.vue'
 
 export default {
   name: 'app',
   menuVisible: false,
   components: {
-    HelloWorld
+    searchTravel
   }
 }
 </script>
 
 <style>
-.md-app-content {min-height :950px}
+.md-app-content {min-height :1280px}
 
 </style>

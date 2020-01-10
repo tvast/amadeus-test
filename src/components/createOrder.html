@@ -113,7 +113,7 @@
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
-          <md-button type="submit" class="md-primary" :disabled="sending">Create user</md-button>
+          <md-button v-mojs="mojsOptions" type="submit" class="md-primary" :disabled="sending">Create user</md-button>
         </md-card-actions>
       </md-card>
 
@@ -122,9 +122,9 @@
     </template>
   </main>
        <div >
-       	<template v-if="toggleInfo">
+       	<template v-if="toggleInfo2">
        		<div v-for="item in info3.data.associatedRecords">
-       			{{item.reference}}
+       			<h1 v-mojs="mojsOptions">{{item.reference}}</h1>
        		</div>
        	</template>
       <div class="row">
@@ -146,7 +146,7 @@
    <!--        <a :href="item.links.flightDates">check offer</a>
 
           <a :href="item.links.flightOffers">This is a link</a> -->
-          <md-checkbox @click="getFLightPrice" v-model="selectedTravel" :value="item.id">{{item.id}}</md-checkbox>
+          <md-checkbox v-mojs="mojsOptions" @click="getFLightPrice" v-model="selectedTravel" :value="item.id">{{item.id}}</md-checkbox>
         </div>
       </div>
     </div>

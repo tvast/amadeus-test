@@ -8,7 +8,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import Hello from '@/components/Hello'
-import HelloWorld from "@/components/HelloWorld.vue"
+import searchTravel from "@/components/searchTravel.vue"
 import searchPrice from "@/components/searchPrice.vue"
 import createOrder from "@/components/createOrder.vue"
 import Intro from "@/components/intro.vue"
@@ -24,7 +24,7 @@ export default new Router({
     ,{
       path: '/foo',
       name: 'foo',
-      component: HelloWorld
+      component: searchTravel
     },
     {
       path: '/bar',

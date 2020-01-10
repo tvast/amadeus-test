@@ -1,20 +1,13 @@
-<template src="./searchprice.html"></template>
-
+<template src="./searchTravel.html"></template>
 
 <style  src="./style.css"></style>
 
 <script>
-import { VueContentLoading,VclFacebook, VclInstagram } from 'vue-content-loading';
 // import Form from "./Form.vue"
 export default {
-  name: 'searchPrice',
+  name: 'Home',
   data: () => ({
     menuVisible: false,
-    components: {
-        VclFacebook,
-        VclInstagram,
-        VueContentLoading,
-      },
     selectedCountryDeparture: null,
     countriesDeparture: [
         'MAD',
@@ -51,24 +44,16 @@ export default {
               swirlFrequency: 2,
               delay: 'stagger(0, 30)'
             }
-          },
-          selectedTravel:{},
-          searchObject:""
+          }
   }),
-computed : {
-            
-             
-},
+created() {
 
-watch:{
-			selectedTravel(){
-				// alert('checkbox changed');
-				return window.console.log(this.selectedTravel);}
-			},
+  
+}, 
 
 methods: {
 
-autocompleteCity(){
+  autocompleteCity(){
     window.console.log(this.selectedCountryDeparture+" "+this.selectedCountryArrival)
   },
 
@@ -121,65 +106,7 @@ flightSearch()
   // this.isLoading = false // JSON data parsed by `response.json()` call
   });
 },
-
-getFLightPrice () {
- window.console.log(this.selectedTravel)
-  
- var vm=this;
-function isCherries(flight) { 
-  return flight.id === vm.selectedTravel;
 }
-this.searchObject = this.info2.find(isCherries);
-
-window.console.log(this.searchObject); 
-
-this.info3="";
-
-var request =  {"data": {
-    "type": "flight-offers-pricing",
-    "flightOffers": [this.searchObject]}}
-
-  async function postSearchPrice() {
-  // Default options are marked with *
-  const response = await fetch("http://localhost:3000/flightprice", {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
-    headers: {'Content-Type': 'application/json'},
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *client
-    body: JSON.stringify(request)// body data type must match "Content-Type" header
-  });
-  return await response.json(); // parses JSON response into native JavaScript objects
-}
-
-postSearchPrice().then((data) => {
-    window.console.log(data);
-  if(data){
-    fligthConfirmationGet()
-  .then((json) => {
-   window.console.log(json);
-  this.info3=json;
-  // this.isLoading = false // JSON data parsed by `response.json()` call
-  });}
-
-  else{this.info3="loading"
-    // this.info3=data // JSON data parsed by `response.json()` call
-  }
-  });
-
-   async function fligthConfirmationGet() {
-  // Default options are marked with *
-  const response = await fetch("http://localhost:3000/flightPriceget" );
-  return await response.json(); // parses JSON response into native JavaScript objects
-}
-this.isLoading = true
-
-
-},
-}
-
 
         
 

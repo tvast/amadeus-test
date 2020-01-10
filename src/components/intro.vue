@@ -6,47 +6,6 @@
 			<h1><span class="fontawesome-star star"></span> <span>Awesome Modern travel agency</span> <span class="fontawesome-star star"></span></h1>
 		</section>
 
-		
-
-
-	
-
-		<!-- <section id="intro">
-
-			<div id="intro-content" class="center-content">
-
-				<div class="center-content-inner">
-
-					<div class="content-section content-section-margin">
-
-						<div class="content-section-grid clearfix">
-
-							<a href="#" class="button nav-link">
-
-								<div class="bottom"></div>
-
-								<div class="top">
-
-									<div class="label">Discover project</div>
-
-									<div class="button-border button-border-left"></div>
-									<div class="button-border button-border-top"></div>
-									<div class="button-border button-border-right"></div>
-									<div class="button-border button-border-bottom"></div>
-
-								</div>
-
-							</a>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</section> -->
 	</div>
 </template>
 
@@ -66,6 +25,7 @@ h1 {
   font-weight: bold;
   text-align: center;
   position: relative;
+  font-size:5rem;
 
   transform: translate(10%, -90%);
 }
@@ -130,7 +90,7 @@ body {
 section.text {
   position: absolute;
   width: 100%;
-  min-width: 800px;
+  min-width: 1000px;
   text-align: center;
   top: 50%;
   margin-top: -55px;
@@ -141,13 +101,13 @@ h1, h3 {
   -ms-transform: matrix(1, -0.20, 0, 1, 0, 0);
   -webkit-transform: matrix(1, -0.20, 0, 1, 0, 0);
 }
-
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap');
 h1 {
-  font-family: "Oswald", Sans-serif;
+  font-family: 'Luckiest Guy', cursive;
   text-transform: uppercase;
   font-weight: 400;
   font-size: 70px;
-  text-shadow: 4px 5px #e6e6d8, 6px 7px #c6a39a;
+
 }
 
 h1 span {

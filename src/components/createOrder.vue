@@ -1,184 +1,15 @@
 <template src="./createOrder.html"></template>
 
 
-<style  scoped>
-/*  .md-app {
-    max-height: 400px;
-    border: 1px solid rgba(#000, .12);
-  }
-
-  
-  .md-drawer {
-    width: 230px;
-    max-width: calc(100vw - 125px);
-  }*/
-
-  .content {
-  max-width: 65%;
-  max-height: 100%;
-  margin: 75px auto;
-  border-radius: 6px;
-  background-color: #424242
-}
-
-.form {
-  text-align: center;
-}
-
-.title {
-  text-align: center;
-  padding-top: 10px;
-}
-
-.progress {
-  width: 80%;
-  display: inline-block;
-  text-align: center;
-}
-
-.progress-bar {
-  background-color: #FEAFEB;
-  margin-bottom: 20px;
-  border-radius: 16px;
-}
-
-.bar-pink {
-  height: 26px;
-  width: 33%;
-  background-color: #FF33CE;
-  color: white;
-  border-radius: 16px;
-}
-
-.categories {
-  width: 100%;
-  display: inline-block;
-}
-
-.button {
-  background-color: #F3F3F3;
-  width: 33.3%;
-  border: none;
-  color: #7E7E7E;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 15px;
-}
-
-button:hover {
-  background-color: #FF33CE;
-  color: white;
-}
-
-.Hotels {
-  margin-left: -4px;
-  margin-right: -4px;
-}
-
-.row1 {
-  width: 100%;
-  margin-top: 30px;
-  font-size: 18px;
-}
-
-.locations {
-  display: inline-block;
-}
-
-.from-location2 {
-  color: #7E7E7E;
-}
-
-.from {
-  -webkit-appearance: none;
-  background-color: #F3F3F3;
-  padding: 8px 20px;
-  border: none;
-}
-
-.from-location1 {
-  width: 45%;
-}
-
-.to-location1 {
-  width: 45%;
-}
-
-.to-location2 {
-  color: #7E7E7E;
-}
-
-.to {
-  -webkit-appearance: none;
-  background-color: #F3F3F3;
-  padding: 8px 20px;
-  border: none;
-}
-
-.row2 {
-  width: 100%;
-  margin-top: 30px;
-  font-size: 18px;
-}
-
-.dates {
-  display: inline-block;
-  border: none;
-}
-
-.depart {
-  width: 45%;
-  color: #7E7E7E;
-}
-
-.departure-date {
-  border: none;
-  padding: 8px 8px;
-  background-color: #F3F3F3;
-}
-
-.return {
-  width: 45%;
-  color: #7E7E7E;
-}
-
-.return-date {
-  border: none;
-  padding: 8px 8px;
-  background-color: #F3F3F3;
-}
-
-.next-button {
-  padding-top: 10px;
-  padding-bottom: 10px;  
-}
-
-.next {
-  display: block;
-  width: 10%;
-  margin: 20px auto 20px;
-  padding: 10px 20px;
-  font-size: 14px;
-  background-color: #448aff;
-  color: white;
-  border: none;
-  border-radius: 16px; 
-}
-
-.next:hover {
-  background-color: #D52CAC;
-}
-
- .md-progress-bar {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-  }
-</style>
+<style  src="./style.css"></style>
 
 <script>
 import { VueContentLoading,VclFacebook, VclInstagram } from 'vue-content-loading';
+
+// Import component
+    import Loading from 'vue-loading-overlay';
+    // Import stylesheet
+    import 'vue-loading-overlay/dist/vue-loading.css';
 // import { validationMixin } from 'vuelidate'
   import {
     required,
@@ -191,6 +22,9 @@ export default {
   name: 'searchPrice',
   data: () => ({
   toggleInfo:false,
+  toggleInfo2:false,
+  isLoading: false,
+  fullPage: true,
 
   form: {
   firstName: "theo",
@@ -206,6 +40,8 @@ export default {
   VclFacebook,
   VclInstagram,
   VueContentLoading,
+  Loading
+
   },
   selectedCountryDeparture: null,
   countriesDeparture: [
@@ -339,7 +175,7 @@ methods: {
         },
         "gender": "MALE",
         "contact": {
-          "emailAddress": this.form.email = null,
+          "emailAddress": this.form.email ,
           "phones": [
             {
               "deviceType": "MOBILE",
@@ -410,133 +246,134 @@ methods: {
     ]
   }
 }
-    //fetch node js api and send the object
-let uriCreateOrder = "http://localhost:3000/flightCreateOrder"
-let header= {'Content-Type': 'application/json'}
-  fetch(uriCreateOrder, { method: 'POST',
-   headers: header, 
-  body: JSON.stringify(requestCreateOrder)
-})
-  .then((response) => {
-     // var vm=this;
-this.info3=response
-  
-  // Do something with the returned data.
-});
-  const uriAuth ="http://localhost:3000/flightcretaeorderget" 
 
-fetch(uriAuth)
-  .then((res) => {
-     return res.json()
-})
-.then((json) => {
-  window.console.log(json);
-  this.info3=json;
-  this.toggleInfo=true;
+async function postBody() {
+  // Default options are marked with *
+  const response = await fetch("http://localhost:3000/flightCreateOrder", {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {'Content-Type': 'application/json'},
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *client
+    body: JSON.stringify(requestCreateOrder)// body data type must match "Content-Type" header
+  });
+  return await response.json(); // parses JSON response into native JavaScript objects
+}
 
-})
+postBody().then((data) => {
+    window.console.log(data);
+    this.info3=data // JSON data parsed by `response.json()` call
+  });
+
+async function CreateOrder() {
+  // Default options are marked with *
+  const response = await fetch("http://localhost:3000/flightcretaeorderget" );
+  return await response.json(); // parses JSON response into native JavaScript objects
+}
+CreateOrder()
+  .then((json) => {
+     this.info3=json;
+  this.toggleInfo2=true; // JSON data parsed by `response.json()` call
+  });
 },
 
   letsFly() {
-    this.info2="";
-  let bodyDate = "departure="+this.selectedDateDeparture + "&"+"arrival="+this.selectedDateArrival+"&locationDeparture="+this.selectedCountryDeparture+"&locationArrival="+this.selectedCountryArrival;
-   window.console.log(bodyDate)
-  let headers= {
+  this.info2="";
+  let bodyDate = "departure="+
+  this.selectedDateDeparture + 
+  "&arrival="+
+  this.selectedDateArrival+
+  "&locationDeparture="+
+  this.selectedCountryDeparture+
+  "&locationArrival="+
+  this.selectedCountryArrival;
+  
+  window.console.log(bodyDate);
+ 
+  async function postUrlEncoded() {
+  // Default options are marked with *
+  const response = await fetch("http://localhost:3000/date?"+bodyDate, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
       // 'Content-Type': 'application/json'   
       'Content-Type': 'application/x-www-form-urlencoded',
-     };
-  let uriDate ="http://localhost:3000/date?" +bodyDate
-  // let bodyDate2 = {
-  //   departure: this.selectedDateDeparture,
-  //   arrival:this.selectedDateArrival
-  // }
-  fetch(uriDate, { method: 'POST', 
-   headers: headers, 
-  body: bodyDate
-})
-  .then(() => {
-     var vm=this;
-fetch(vm.localhost3).then(function(response) {
-// Examine the text in the response
-response.json().then((response) => {
-  window. console.log(response)
-  vm.token=response
-})
+     },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *client
+    body: bodyDate// body data type must match "Content-Type" header
+  });
+  return await response.json(); // parses JSON response into native JavaScript objects
 }
-);
-  
-  // Do something with the returned data.
-});
-  const uriAuth ="http://localhost:3000/flightSearch" 
 
-fetch(uriAuth)
-  .then((res) => {
-     return res.json()
-})
-.then((json) => {
-  window.console.log(json);
-  this.info2=json;
+postUrlEncoded().then((data) => {
+    window.console.log(data);
+    // this.info3=data // JSON data parsed by `response.json()` call
+  });
+
+async function flightSearch() {
+  // Default options are marked with *
+  const response = await fetch("http://localhost:3000/flightSearch" );
+  return await response.json(); // parses JSON response into native JavaScript objects
+}
+this.isLoading = true
+flightSearch()
+  .then((json) => {
+   this.info2=json;
   this.toggleInfo=true;
-
-})
+  // this.isLoading = false // JSON data parsed by `response.json()` call
+  });
 },
 
 getFLightPrice () {
  window.console.log(this.selectedTravel)
-	//get the flight offer
-	// productById (info2) { // function
- //      return productId => { // product by id
- //        return info2.id.find(product => product.id === productId)
- //        }
- //      }
-
+	
  var vm=this;
 function isCherries(flight) { 
   return flight.id === vm.selectedTravel;
 }
 this.searchObject = this.info2.find(isCherries);
+
 window.console.log(this.searchObject); 
 
-   this.info3="";
-  
-  let headers= {
-      'Content-Type': 'application/json'   
-      // 'Content-Type': 'JSON',
-     };
-  let uriDate ="http://localhost:3000/flightprice"
-  // let bodyDate2 = {
-  //   departure: this.selectedDateDeparture,
-  //   arrival:this.selectedDateArrival
-  // }
-  fetch(uriDate, { method: 'POST', 
-   headers: headers, 
-  body: JSON.stringify(this.searchObject)
-})
-  .then(() => {
-     // var vm=this;
-fetch("http://localhost:3000/flightPriceget").then((res) => {
-     return res.json()
-})
-.then((json) => {
-  window.console.log(json);
+this.info3="";
+
+  async function postSearchPrice() {
+  // Default options are marked with *
+  const response = await fetch("http://localhost:3000/flightprice", {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {'Content-Type': 'application/json'},
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *client
+    body: JSON.stringify(this.searchObject)// body data type must match "Content-Type" header
+  });
+  return await response.json(); // parses JSON response into native JavaScript objects
+}
+
+postSearchPrice().then((data) => {
+    window.console.log(data);
+    async function fligthConfirmationGet() {
+  // Default options are marked with *
+  const response = await fetch("http://localhost:3000/flightPriceget" );
+  return await response.json(); // parses JSON response into native JavaScript objects
+}
+this.isLoading = true
+fligthConfirmationGet()
+  .then((json) => {
+   window.console.log(json);
   this.info3=json;
+  // this.isLoading = false // JSON data parsed by `response.json()` call
+  });
+    // this.info3=data // JSON data parsed by `response.json()` call
+  });
 
-})
-;
-  
-  // Do something with the returned data.
-});
-//   const uriAuth ="http://localhost:3000/flightPriceget" 
-
-// fetch(uriAuth)
-//   .then((res) => {
-//      return res.json()
-// })
-// .then((json) => {
-//   window.console.log(json);
-//   this.info3=json;
-
-// })
 },
 }
 

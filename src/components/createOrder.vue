@@ -57,7 +57,7 @@ export default {
   'SYD',
   'BKK',
   ],
-  localhost: "https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT,CITY&keyword=",
+  localhost: "https://shielded-depths-64980.herokuapp.com/",
   info:{},
   info2:{},
   info3:{},
@@ -249,7 +249,7 @@ methods: {
 
 async function postBody() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/flightCreateOrder", {
+  const response = await fetch(vm.localhost+"flightCreateOrder", {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -269,7 +269,7 @@ postBody().then((data) => {
 
 async function CreateOrder() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/flightcretaeorderget" );
+  const response = await fetch(vm.localhost+"flightcretaeorderget" );
   return await response.json(); // parses JSON response into native JavaScript objects
 }
 CreateOrder()
@@ -280,6 +280,7 @@ CreateOrder()
 },
 
   letsFly() {
+    var vm =this;
   this.info2="";
   let bodyDate = "departure="+
   this.selectedDateDeparture + 
@@ -294,7 +295,7 @@ CreateOrder()
  
   async function postUrlEncoded() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/date?"+bodyDate, {
+  const response = await fetch(vm.localhost+"date?"+bodyDate, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -314,10 +315,9 @@ postUrlEncoded().then((data) => {
     window.console.log(data);
     // this.info3=data // JSON data parsed by `response.json()` call
   });
-
 async function flightSearch() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/flightSearch" );
+  const response = await fetch(vm.localhost+"flightSearch" );
   return await response.json(); // parses JSON response into native JavaScript objects
 }
 this.isLoading = true
@@ -344,7 +344,7 @@ this.info3="";
 
   async function postSearchPrice() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/flightprice", {
+  const response = await fetch(vm.localhost+"flightprice", {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -361,7 +361,7 @@ postSearchPrice().then((data) => {
     window.console.log(data);
     async function fligthConfirmationGet() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/flightPriceget" );
+  const response = await fetch(vm.localhost+"flightPriceget" );
   return await response.json(); // parses JSON response into native JavaScript objects
 }
 this.isLoading = true

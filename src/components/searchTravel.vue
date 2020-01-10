@@ -22,7 +22,7 @@ export default {
         'SYD',
         'BKK',
        ],
-      localhost: "https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT,CITY&keyword=",
+      localhost: "https://shielded-depths-64980.herokuapp.com/",
       info:{},
   info2:{},
   info3:{},
@@ -69,10 +69,10 @@ letsFly() {
   this.selectedCountryArrival;
   
   window.console.log(bodyDate);
- 
+ let vm = this
   async function postUrlEncoded() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/date?"+bodyDate, {
+  const response = await fetch(vm.localhost+"date?"+bodyDate, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -95,7 +95,7 @@ postUrlEncoded().then((data) => {
 
 async function flightSearch() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/flightSearch" );
+  const response = await fetch(vm.localhost+"flightSearch" );
   return await response.json(); // parses JSON response into native JavaScript objects
 }
 this.isLoading = true

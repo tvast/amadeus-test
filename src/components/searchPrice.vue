@@ -29,7 +29,7 @@ export default {
         'SYD',
         'BKK',
        ],
-      localhost: "https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT,CITY&keyword=",
+      localhost: "https://shielded-depths-64980.herokuapp.com/",
       info:{},
   info2:{},
   info3:{},
@@ -73,6 +73,7 @@ autocompleteCity(){
   },
 
 letsFly() {
+  let vm=this
   this.info2="";
   let bodyDate = "departure="+
   this.selectedDateDeparture + 
@@ -87,7 +88,7 @@ letsFly() {
  
   async function postUrlEncoded() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/date?"+bodyDate, {
+  const response = await fetch(vm.localhost+"date?"+bodyDate, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -110,7 +111,7 @@ postUrlEncoded().then((data) => {
 
 async function flightSearch() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/flightSearch" );
+  const response = await fetch(vm.localhost+"flightSearch" );
   return await response.json(); // parses JSON response into native JavaScript objects
 }
 this.isLoading = true
@@ -123,9 +124,10 @@ flightSearch()
 },
 
 getFLightPrice () {
+  let vm=this
  window.console.log(this.selectedTravel)
   
- var vm=this;
+ // var vm=this;
 function isCherries(flight) { 
   return flight.id === vm.selectedTravel;
 }
@@ -141,7 +143,7 @@ var request =  {"data": {
 
   async function postSearchPrice() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/flightprice", {
+  const response = await fetch(vm.localhost+"flightprice", {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -171,7 +173,7 @@ postSearchPrice().then((data) => {
 
    async function fligthConfirmationGet() {
   // Default options are marked with *
-  const response = await fetch("http://localhost:3000/flightPriceget" );
+  const response = await fetch(vm.localhost+"flightPriceget" );
   return await response.json(); // parses JSON response into native JavaScript objects
 }
 this.isLoading = true
